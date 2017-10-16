@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Wall"))
         {
             //perform game over screen
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Application.LoadLevel(0);
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
