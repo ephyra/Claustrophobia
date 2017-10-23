@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
     private float initZ;
     public float maxSpeed;
+    public SpawnEnemy spawner;
 
     // Use this for initialization
     void Start() {
@@ -40,13 +41,18 @@ public class PlayerController : MonoBehaviour {
         {
             //perform game over screen
             //Destroy(gameObject);
-            Application.LoadLevel(0);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             //destroy enemy
             Destroy(collision.gameObject);
+            if (spawner.minCooldown >= 0.6f)
+            {
+                spawner.minCooldown -= 0.2f;
+                spawner.maxCooldown -= 0.2f;
+            }
         }
     }
 }

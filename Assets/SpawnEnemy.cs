@@ -19,14 +19,11 @@ public class SpawnEnemy : MonoBehaviour {
     public GameObject rightWall;
     public GameObject bottomWall;
     public GameObject topWall;
+    private enum Quadrant { bottomRight = 0, topRight = 90, topLeft = 180, bottomLeft = 270};
 
 	// Use this for initialization
 	void Start () {
         StartCoroutine(Spawner());
-        leftWall = GameObject.Find("LeftWall");
-        rightWall = GameObject.Find("RightWall");
-        bottomWall = GameObject.Find("BottomWall");
-        topWall = GameObject.Find("TopWall");
 
     }
 	
@@ -46,10 +43,29 @@ public class SpawnEnemy : MonoBehaviour {
 
         while (!stopSpawn)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), Random.Range(minY,maxY), 1);
+            float spawnX = Random.Range(minX, maxX);
+            float spawnY = Random.Range(minY, maxY);
+            
+            Vector3 spawnPosition = new Vector3(spawnX, spawnY, 1);
+            Quadrant currQuadrant;
+            if (spawnX < 0 && spawnY < 0)
+            {
+                currQuadrant = Quadrant.topRight;
+            } else if (spawnX < 0 && spawnY > 0)
+            {
+                currQuadrant = Quadrant.bottomRight;
+            } else if (spawnX > 0 && spawnY < 0)
+            {
+                currQuadrant = Quadrant.topLeft;
+            } else
+            {
+                currQuadrant = Quadrant.bottomLeft;
+            }
 
-            Instantiate(enemy, spawnPosition, Quaternion.Euler(0,0,Random.Range(0.0f,360.0f)));
-
+            print((int)currQuadrant);
+            
+            Instantiate(enemy, spawnPosition, Quaternion.Euler(0,0,Random.Range((float)currQuadrant,(float)(currQuadrant+90))));
+            
             yield return new WaitForSeconds(spawnCooldown);
         }
     }

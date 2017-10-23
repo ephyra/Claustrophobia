@@ -20,7 +20,6 @@ public class EnemyGrowAndMove : MonoBehaviour {
 	void Update () {
         if (transform.localScale.x >= maxSize && stillGrowing == true)
         {
-            print("I am done");
             StopCoroutine(Grow());
             stillGrowing = false;
         } else if(stillGrowing == false)

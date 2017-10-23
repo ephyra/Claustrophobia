@@ -89,9 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36bed537b3c59794bb5e1d2037ba9d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.07
+  speed: 2
   growth: 0.1
-  maxSize: 0.7
+  maxSize: 0.6
   growthInterval: 0.4
   stillGrowing: 1
   wallMovement: 0.5
