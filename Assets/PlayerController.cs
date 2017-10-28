@@ -48,11 +48,8 @@ public class PlayerController : MonoBehaviour {
         {
             //destroy enemy
             Destroy(collision.gameObject);
-            if (spawner.minCooldown >= 0.6f)
-            {
-                spawner.minCooldown -= 0.2f;
-                spawner.maxCooldown -= 0.2f;
-            }
+            spawner.ReduceSpawnCooldown();
+            spawner.enemiesKilled++;
         }
     }
 }

@@ -18,16 +18,19 @@ public class EnemyGrowAndMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //if the spawned enemy has not reach max size, continue growing
         if (transform.localScale.x >= maxSize && stillGrowing == true)
         {
             StopCoroutine(Grow());
             stillGrowing = false;
+        //if reached max size, start moving
         } else if(stillGrowing == false)
         {
             transform.position -= transform.up * Time.deltaTime * speed;
         }
     }
 
+    //Used for growing animation of newly spawned enemy units
     IEnumerator Grow()
     {
         
@@ -43,6 +46,13 @@ public class EnemyGrowAndMove : MonoBehaviour {
         
     }
 
+    //Used for setting speed of enemy, will be called by spawner script
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    //used to check for collision with walls to move them closer
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string objectName = collision.gameObject.name;
