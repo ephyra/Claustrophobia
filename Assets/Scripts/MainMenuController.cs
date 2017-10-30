@@ -45,4 +45,8 @@ public class MainMenuController : MonoBehaviour {
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 	}
 
+	public void Quit () {
+		Application.Quit ();
+	}
+
 }
