@@ -37,4 +37,15 @@ public class SplashscreenController : MonoBehaviour {
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 	}
 
+
+	void Update () {
+
+		if (Input.anyKeyDown) {
+
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1); // skip the splash screen
+
+		}
+
+	}
+
 }
