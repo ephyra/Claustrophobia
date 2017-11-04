@@ -110,11 +110,13 @@ public class MainMenuController : MonoBehaviour
 					break;
 
 				case 1:
+					HideButtonPanel ();
 					ShowInstructionsPanel ();
 					currentState = State.INSTRUCTIONS;
 					break;
 
 				case 2:
+					HideButtonPanel ();
 					ShowCreditsPanel ();
 					currentState = State.CREDITS;
 					break;
@@ -137,6 +139,7 @@ public class MainMenuController : MonoBehaviour
 
 			if (Input.GetKeyDown (KeyCode.Escape)) {
 				HideInstructionsPanel ();
+				ShowButtonPanel ();
 				currentState = State.MAIN_MENU;
 			}
 
@@ -146,6 +149,7 @@ public class MainMenuController : MonoBehaviour
 
 			if (Input.GetKeyDown (KeyCode.Escape)) {
 				HideCreditsPanel ();
+				ShowButtonPanel ();
 				currentState = State.MAIN_MENU;
 			}
 
