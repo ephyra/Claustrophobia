@@ -19,7 +19,7 @@ public class InnerBoundGameOver : MonoBehaviour {
         print(other.gameObject.name);
         if (other.gameObject.CompareTag("Wall"))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
         }
     }
 }

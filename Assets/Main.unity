@@ -410,7 +410,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 3
-  m_AngularDrag: 0.1
+  m_AngularDrag: 0.5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -429,8 +429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  rotSpeed: 4
-  maxSpeed: 3.5
+  rotSpeed: 5
+  maxSpeed: 4.5
   spawner: {fileID: 2065711609}
 --- !u!212 &102961190
 SpriteRenderer:
@@ -748,7 +748,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.38, y: 1.38}
+  m_Size: {x: 1.32, y: 1.32}
   m_EdgeRadius: 0
 --- !u!212 &379421889
 SpriteRenderer:
@@ -1628,6 +1628,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fadae0f796740a4dabaf249fd8b04cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myLight: {fileID: 0}
+  angleInitialDecrement: 0.7
+  angleDecrementRamping: 0.1
+  intensityDecrement: 2.5
 --- !u!1 &2065711608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,9 +1666,9 @@ MonoBehaviour:
   spawnCooldownReductionAmount: 0.05
   enemySpeedIncrement: 0.05
   currentEnemyMaxSpeed: 2
-  maxCooldown: 5
-  minCooldown: 4
-  padding: 1.5
+  maxCooldown: 4
+  minCooldown: 4.5
+  padding: 1
   startWait: 2
   stopSpawn: 0
   leftWall: {fileID: 1413915291}

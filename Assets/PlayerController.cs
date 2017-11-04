@@ -33,6 +33,14 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+		//Pause function
+		if(Input.GetKeyDown(KeyCode.P)) {
+			if (Time.timeScale == 1.0f) {
+				Time.timeScale = 0.0001f;
+			} else {
+				Time.timeScale = 1.0f;
+			}
+		}
 		
 	}
 
@@ -42,7 +50,7 @@ public class PlayerController : MonoBehaviour {
         {
             //perform game over screen
             //Destroy(gameObject);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
