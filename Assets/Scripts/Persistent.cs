@@ -6,6 +6,8 @@ public class Persistent : MonoBehaviour {
 
 	public static Persistent Obj;
 
+	public bool comingFromGame =false;
+
 	public bool hasReadInstructions;
 
 	void Awake () {
@@ -17,11 +19,13 @@ public class Persistent : MonoBehaviour {
 
 		} else {
 
-			Destroy (this);
+			Destroy (this.gameObject);
 
 		}
 
-		DontDestroyOnLoad (this);
+
+		DontDestroyOnLoad (this.gameObject);
+			
 
 	}
 
