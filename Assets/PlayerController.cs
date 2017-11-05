@@ -16,11 +16,12 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
-		pauser.HidePauseMenu ();
+
 
         rb2d = GetComponent<Rigidbody2D>();
+		print (rb2d);
         print( GetComponent<Renderer>().bounds.size);
-
+		pauser.HidePauseMenu ();
     }
     
     void FixedUpdate()
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour {
         float moveForward = Input.GetAxis("Up");
         transform.rotation = Quaternion.Euler(0, 0, initZ);
         initZ -= rotateFactor * rotSpeed;
-        rb2d.AddForce(transform.right * speed * moveForward);
+		rb2d.AddForce(transform.right * speed * moveForward);
         if(rb2d.velocity.magnitude >= maxSpeed)
         {
             rb2d.velocity = rb2d.velocity.normalized * maxSpeed;
