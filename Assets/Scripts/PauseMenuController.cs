@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class PauseMenuController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public GameObject canvas;
+	public bool gameIsPaused = false;
+
+
+	public void ShowPauseMenu () {
+
+		ResetPauseMenu ();
+		canvas.SetActive (true);
+
 	}
-	
-	// Update is called once per frame
+
+	public void HidePauseMenu () {
+		canvas.SetActive (false);
+	}
+
+	private void ResetPauseMenu () {
+	}
+
 	void Update () {
-		
+
+		if (gameIsPaused) {
+
+
+
+		}
+
 	}
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 40db1fdedfe6fdc4fb6b9f88049cc1b0
-timeCreated: 1509715297
+timeCreated: 1509878189
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Minecraft
+  fontName: pixelmix
   fontNames:
   - Minecraft
   fallbackFontReferences: []

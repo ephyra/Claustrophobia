@@ -11,8 +11,13 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed;
     public SpawnEnemy spawner;
 
+	public PauseMenuController pauser;
+
     // Use this for initialization
     void Start() {
+
+		pauser.HidePauseMenu ();
+
         rb2d = GetComponent<Rigidbody2D>();
         print( GetComponent<Renderer>().bounds.size);
 
@@ -37,8 +42,12 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
 			if (Time.timeScale == 1.0f) {
 				Time.timeScale = 0.0001f;
+				pauser.gameIsPaused = true;
+				pauser.ShowPauseMenu ();
 			} else {
 				Time.timeScale = 1.0f;
+				pauser.gameIsPaused = false;
+				pauser.HidePauseMenu ();
 			}
 		}
 		

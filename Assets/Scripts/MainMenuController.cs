@@ -25,8 +25,15 @@ public class MainMenuController : MonoBehaviour
 
 	public AudioSource sfx;
 
+	public Image fadeImage;
+	public float fadeLength = 0.5f;
+
 	void Start ()
 	{
+		// Fade from black
+		fadeImage.gameObject.SetActive (true);
+		StartCoroutine (fadeFromBlack ());
+
 		// Reset the UI
 		ShowButtonPanel ();
 		HideInstructionsPanel ();
@@ -116,6 +123,7 @@ public class MainMenuController : MonoBehaviour
 				case 1:
 					HideButtonPanel ();
 					ShowInstructionsPanel ();
+					Persistent.Obj.hasReadInstructions = true;
 					currentState = State.INSTRUCTIONS;
 					break;
 
@@ -162,6 +170,21 @@ public class MainMenuController : MonoBehaviour
 		default:
 			break;
 
+
+		}
+
+	}
+
+	IEnumerator fadeFromBlack () {
+
+		float elapsedTime = 0;
+
+		while (fadeImage.color.a > 0) {
+
+			fadeImage.color = new Color (0, 0, 0, Mathf.SmoothStep (1f, 0, elapsedTime / fadeLength));
+			elapsedTime += Time.deltaTime;
+
+			yield return null;
 
 		}
 
