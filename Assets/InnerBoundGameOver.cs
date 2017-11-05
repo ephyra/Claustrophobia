@@ -16,7 +16,6 @@ public class InnerBoundGameOver : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        print(other.gameObject.name);
         if (other.gameObject.CompareTag("Wall"))
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
