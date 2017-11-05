@@ -10,6 +10,7 @@ public class EnemyGrowAndMove : MonoBehaviour {
     public float growthInterval;
     public bool stillGrowing = true;
     public float wallMovement;
+	public LightingScript light;
 
 	// Use this for initialization
 	void Start () {
@@ -58,21 +59,32 @@ public class EnemyGrowAndMove : MonoBehaviour {
         string objectName = collision.gameObject.name;
         switch (objectName)
         {
-            case "LeftWall":
-                Destroy(gameObject);
-                collision.gameObject.transform.localPosition += new Vector3(wallMovement, 0, 0);
+			case "Enemy(Clone)":
+				Physics2D.IgnoreCollision (this.GetComponent<Collider2D>(), collision.collider);
+				break;
+			case "LeftWall":
+				Destroy (gameObject);
+				collision.gameObject.transform.localPosition += new Vector3 (wallMovement, 0, 0);
+				light = Object.FindObjectOfType<LightingScript> ();
+				light.shiftLight (wallMovement / 2, "Left");
                 break;
             case "RightWall":
                 Destroy(gameObject);
                 collision.gameObject.transform.localPosition -= new Vector3(wallMovement, 0, 0);
+				light = Object.FindObjectOfType<LightingScript> ();
+				light.shiftLight (wallMovement / 2, "Right");
                 break;
             case "BottomWall":
                 Destroy(gameObject);
                 collision.gameObject.transform.localPosition += new Vector3(0, wallMovement, 0);
+				light = Object.FindObjectOfType<LightingScript> ();
+				light.shiftLight (wallMovement / 2, "Bottom");
                 break;
             case "TopWall":
                 Destroy(gameObject);
                 collision.gameObject.transform.localPosition -= new Vector3(0, wallMovement, 0);
+				light = Object.FindObjectOfType<LightingScript> ();
+				light.shiftLight (wallMovement / 2, "Top");
                 break;
             default:
                 break;
