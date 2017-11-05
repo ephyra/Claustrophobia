@@ -14,6 +14,8 @@ public class MainMenuController : MonoBehaviour
 		CREDITS
 	}
 
+	public GameObject instructionAnimations;
+
 	public CustomButton[] buttons;
 	public int currentlySelectedButton = 0;
 
@@ -28,11 +30,13 @@ public class MainMenuController : MonoBehaviour
 	public Image fadeImage;
 	public float fadeLength = 0.5f;
 
-	void Start ()
+	void Awake ()
 	{
 		// Fade from black
-		fadeImage.gameObject.SetActive (true);
-		StartCoroutine (fadeFromBlack ());
+		if (!Persistent.Obj.comingFromGame) {
+			fadeImage.gameObject.SetActive (true);
+			StartCoroutine (fadeFromBlack ());
+		}
 
 		// Reset the UI
 		ShowButtonPanel ();
@@ -45,11 +49,13 @@ public class MainMenuController : MonoBehaviour
 
 	public void ShowInstructionsPanel ()
 	{
+		instructionAnimations.SetActive (true);
 		instructionsPanel.SetActive (true);
 	}
 
 	public void HideInstructionsPanel ()
 	{
+		instructionAnimations.SetActive (false);
 		instructionsPanel.SetActive (false);
 	}
 
@@ -123,7 +129,7 @@ public class MainMenuController : MonoBehaviour
 				case 1:
 					HideButtonPanel ();
 					ShowInstructionsPanel ();
-					Persistent.Obj.hasReadInstructions = true;
+					//Persistent.Obj.hasReadInstructions = true;
 					currentState = State.INSTRUCTIONS;
 					break;
 

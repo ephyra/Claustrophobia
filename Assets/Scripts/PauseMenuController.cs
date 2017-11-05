@@ -58,7 +58,7 @@ public class PauseMenuController : MonoBehaviour {
 	}
 
 	void QuitToMenu () {
-
+		Persistent.Obj.comingFromGame = true;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
 
 	}
