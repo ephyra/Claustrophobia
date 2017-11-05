@@ -23,6 +23,8 @@ public class MainMenuController : MonoBehaviour
 
 	private State currentState;
 
+	public AudioSource sfx;
+
 	void Start ()
 	{
 		// Reset the UI
@@ -84,10 +86,12 @@ public class MainMenuController : MonoBehaviour
 		case State.MAIN_MENU:
 
 			if ((Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) && currentlySelectedButton > 0) { // Up
+				sfx.Play ();
 				currentlySelectedButton --;
 			}
 
 			if ((Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S)) && currentlySelectedButton < buttons.Length - 1) { // Down
+				sfx.Play ();
 				currentlySelectedButton ++; 
 			}
 

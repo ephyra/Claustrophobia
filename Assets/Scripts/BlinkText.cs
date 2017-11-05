@@ -8,27 +8,30 @@ public class BlinkText : MonoBehaviour {
 	public float onTime = 0.9f;
 	public float offTime = 0.35f;
 
+	public Color invisible = new Color(0, 0, 0, 0);
+	public Color initColor;
+
 	private Text _text;
-	private string initText;
+
+	void Awake () {
+		_text = GetComponent<Text> ();
+		initColor = _text.color;
+	}
 
 	void OnEnable () {
-		_text = GetComponent<Text> ();
-		initText = GetComponent<Text> ().text;
-
 		StartCoroutine (ToggleAfterSeconds ());
 	}
 
 	IEnumerator ToggleAfterSeconds () {
 
 		while (true) {
-			if (_text.text.Length == 0) {
-				_text.text = initText;
-				yield return new WaitForSecondsRealtime (onTime);
-			} else {
-				_text.text = "";
+			if (_text.color == initColor) {
+				_text.color = invisible;
 				yield return new WaitForSecondsRealtime (offTime);
+			} else {
+				_text.color = initColor;
+				yield return new WaitForSecondsRealtime (onTime);
 			}
-
 		}
 	}
 }

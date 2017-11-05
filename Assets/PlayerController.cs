@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 		//Pause function
-		if(Input.GetKeyDown(KeyCode.P)) {
+		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
 			if (Time.timeScale == 1.0f) {
 				Time.timeScale = 0.0001f;
 			} else {
