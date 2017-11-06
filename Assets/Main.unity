@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc97d4415347df43b50b0d2479e4e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauser: {fileID: 0}
+  pauser: {fileID: 659974076}
 --- !u!61 &379421888
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4, y: 2.4}
+  m_Size: {x: 2.6, y: 2.5}
   m_EdgeRadius: 0
 --- !u!212 &379421889
 SpriteRenderer:
@@ -622,7 +622,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &417563451 stripped
 MonoBehaviour:

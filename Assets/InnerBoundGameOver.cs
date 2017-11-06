@@ -15,12 +15,15 @@ public class InnerBoundGameOver : MonoBehaviour {
 	void Update () {
 		
 	}
+		
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Wall"))
-        {
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		print (other.name);
+		if (other.gameObject.CompareTag("Wall"))
+		{
 			pauser.ShowGameOverMenu ("You died of claustrophobia.");
-        }
-    }
+			Time.timeScale = 0.0001f;
+		}
+	}
 }

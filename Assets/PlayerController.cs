@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     void Start() {
 
 
-
+		Time.timeScale = 1.0f;
         rb2d = GetComponent<Rigidbody2D>();
 		print (rb2d);
         print( GetComponent<Renderer>().bounds.size);
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Wall"))
         {
 			pauser.ShowGameOverMenu ("You died from touching a wall.");
+			Time.timeScale = 0.0001f;
         }
 
         if (collision.gameObject.CompareTag("Enemy"))

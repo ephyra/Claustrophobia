@@ -299,11 +299,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frames:
-  - {fileID: 21300000, guid: f4963b949320b9449a93ea666ac2fecb, type: 3}
-  - {fileID: 21300000, guid: 74cc6b79df9c6b24bbe3cdb14f88ddc3, type: 3}
-  - {fileID: 21300000, guid: d37194c1a397bae468e425bcffd329dd, type: 3}
-  - {fileID: 21300000, guid: 8d7a5d0e8fd44204e9a0fbc412beaecc, type: 3}
-  - {fileID: 21300000, guid: 0e0dedd5e5261f745b6b1844f40edc7c, type: 3}
+  - {fileID: 21300000, guid: e7951c4363a648d468199af564de16e6, type: 3}
+  - {fileID: 21300000, guid: c2ebe7fc1deaac646a65abc371c60987, type: 3}
+  - {fileID: 21300000, guid: dd911e860257f724a8f03abdc32707fe, type: 3}
+  - {fileID: 21300000, guid: fadb1177212b87c49921d58aa1d231ea, type: 3}
+  - {fileID: 21300000, guid: 4603aa8ed3106a94ab32a38f0391f433, type: 3}
   frameOrder: 0000000001000000020000000100000003000000040000000000000004000000000000000400000000000000
   frameDuration:
   - 1
