@@ -58,9 +58,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            //perform game over screen
-            //Destroy(gameObject);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+			pauser.ShowGameOverMenu ("You died from touching a wall.");
         }
 
         if (collision.gameObject.CompareTag("Enemy"))

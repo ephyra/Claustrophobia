@@ -58,3 +58,9 @@ TagManager:
   - name: empty space
     uniqueID: 1821948059
     locked: 0
+  - name: UI
+    uniqueID: 2943906545
+    locked: 0
+  - name: anims
+    uniqueID: 622347653
+    locked: 0

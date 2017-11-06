@@ -68,9 +68,10 @@ public class AnimController : MonoBehaviour
 				yield return new WaitForEndOfFrame ();
 			}
 
-
+			print (GetComponent<Rigidbody2D> ());
 			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 200f);
 
+			print (Time.timeScale);
 			yield return new WaitForSecondsRealtime (loopTime);
 			transform.SetPositionAndRotation (initPos, initRot);
 		}
@@ -85,13 +86,14 @@ public class AnimController : MonoBehaviour
 		while (true) {
 
 			GetComponent<Rigidbody2D> ().AddForce (Vector2.right * 310f);
+			print (GetComponent<Rigidbody2D> ().velocity);
 
 			yield return new WaitForSecondsRealtime (1.0f);
 
 			float elapsedTime = 0;
 			while (sr.color.a > 0) {
 				sr.color = new Color (1f, 1f, 1f, Mathf.Lerp(1f, 0, elapsedTime/0.6f));
-				elapsedTime += Time.deltaTime;
+				elapsedTime += Time.fixedUnscaledDeltaTime;
 				yield return null;
 			}
 
@@ -101,13 +103,13 @@ public class AnimController : MonoBehaviour
 
 			foreach (Transform child in secondFrameWalls.transform) {
 				child.gameObject.GetComponent<SpriteRenderer> ().enabled = true;
-				yield return new WaitForSeconds (0.45f);
+				yield return new WaitForSecondsRealtime(0.45f);
 			}
 
 			elapsedTime = 0;
 			while (sr.color.a > 0) {
 				sr.color = new Color (1f, 1f, 1f, Mathf.Lerp(1f, 0, elapsedTime/0.6f));
-				elapsedTime += Time.deltaTime;
+				elapsedTime += Time.fixedUnscaledDeltaTime;
 				yield return null;
 			}
 

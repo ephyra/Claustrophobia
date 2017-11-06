@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InnerBoundGameOver : MonoBehaviour {
 
+	public PauseMenuController pauser;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -18,7 +20,7 @@ public class InnerBoundGameOver : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Wall"))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+			pauser.ShowGameOverMenu ("You died of claustrophobia.");
         }
     }
 }
