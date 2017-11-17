@@ -18,6 +18,8 @@ public class MainMenuController : MonoBehaviour
 	public GameObject instructionAnimations;
 	public GameObject mainMenuAnimations;
 
+	public GameObject warning;
+
 	public CustomButton[] buttons;
 	public int currentlySelectedButton = 0;
 
@@ -57,6 +59,7 @@ public class MainMenuController : MonoBehaviour
 		currentState = State.INSTRUCTIONS;
 		instructionAnimations.SetActive (true);
 		instructionsPanel.SetActive (true);
+		warning.SetActive (false);
 		HideButtonPanel ();
 	}
 
@@ -140,12 +143,19 @@ public class MainMenuController : MonoBehaviour
 				switch (currentlySelectedButton) {
 
 				case 0:
-					NextScene ();
+					if (Persistent.Obj.hasReadInstructions == false) {
+						ShowInstructionsPanel ();
+						currentState = State.INSTRUCTIONS;
+						Persistent.Obj.hasReadInstructions = true;
+						warning.SetActive (true);
+					} else {
+						NextScene ();
+					}
 					break;
 
 				case 1:
 					ShowInstructionsPanel ();
-					//Persistent.Obj.hasReadInstructions = true;
+					Persistent.Obj.hasReadInstructions = true;
 					currentState = State.INSTRUCTIONS;
 					break;
 
