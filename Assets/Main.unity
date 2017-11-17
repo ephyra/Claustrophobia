@@ -2840,7 +2840,9 @@ MonoBehaviour:
   enemy: {fileID: 1461878079089542, guid: 63eeb049b1490d243b9c4d390926b03c, type: 2}
   enemiesKilled: 0
   speedScalingThreshold: 0.4
+  intermediateSpeedScalingThreshold: 0.6
   minSpawnCooldownThreshold: 1
+  spawnCooldownSoftCap: 50
   spawnCooldownReductionAmount: 0.05
   enemySpeedIncrement: 0.05
   currentEnemyMaxSpeed: 2

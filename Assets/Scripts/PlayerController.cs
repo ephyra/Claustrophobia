@@ -68,9 +68,12 @@ public class PlayerController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy"))
         {
 			//remove from game controller rb list
+			collision.gameObject.GetComponent<Rigidbody2D> ().isKinematic = true;
+			collision.gameObject.GetComponent<Collider2D> ().isTrigger = true;
 			GameController.Obj.RemoveRb (collision.gameObject.GetComponent<Rigidbody2D> ());
             //destroy enemy
-            Destroy(collision.gameObject);
+			collision.gameObject.GetComponent<EnemyGrowAndMove> ().canMove = false;
+			StartCoroutine (CallDeathAnim (collision.gameObject));
 			audio.PlayOneShot (audio.clip, 1.0f);
             spawner.ReduceSpawnCooldown();
             spawner.enemiesKilled++;
@@ -93,6 +96,11 @@ public class PlayerController : MonoBehaviour {
 		pauser.HidePauseMenu ();
 	}
 
+	public IEnumerator CallDeathAnim (GameObject obj) {
+		obj.GetComponent<Animator> ().Play ("ghostDeath");
+		yield return new WaitForSeconds(0.6f);
+		Destroy(obj);
+	}
 }
 
 
