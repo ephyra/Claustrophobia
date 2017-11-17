@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour {
 
 	public PauseMenuController pauser;
 
+	public bool isPaused;
+
     // Use this for initialization
     void Start() {
 
-
+		isPaused = false;
 		Time.timeScale = 1.0f;
         rb2d = GetComponent<Rigidbody2D>();
 		print (rb2d);
@@ -25,8 +27,8 @@ public class PlayerController : MonoBehaviour {
     }
     
     void FixedUpdate()
-    {
-        float rotateFactor = Input.GetAxis("Horizontal");
+	{
+		float rotateFactor = pauser.gameIsPaused ? 0 : Input.GetAxis ("Horizontal");
         float moveForward = Input.GetAxis("Up");
         transform.rotation = Quaternion.Euler(0, 0, initZ);
         initZ -= rotateFactor * rotSpeed;
@@ -41,13 +43,17 @@ public class PlayerController : MonoBehaviour {
     void Update () {
 		//Pause function
 		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
-			if (Time.timeScale == 1.0f) {
-				Time.timeScale = 0.0001f;
+			if (!isPaused) {
+				isPaused = true;
+				SpawnEnemy.Obj.isPaused = true;
 				pauser.gameIsPaused = true;
+				GameController.Obj.SaveRigidbodies ();
 				pauser.ShowPauseMenu ();
 			} else {
-				Time.timeScale = 1.0f;
+				isPaused = false;
+				SpawnEnemy.Obj.isPaused = false;
 				pauser.gameIsPaused = false;
+				GameController.Obj.LoadRigidbodies ();
 				pauser.HidePauseMenu ();
 			}
 		}
@@ -64,6 +70,8 @@ public class PlayerController : MonoBehaviour {
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
+			//remove from game controller rb list
+			GameController.Obj.RemoveRb (collision.gameObject.GetComponent<Rigidbody2D> ());
             //destroy enemy
             Destroy(collision.gameObject);
             spawner.ReduceSpawnCooldown();

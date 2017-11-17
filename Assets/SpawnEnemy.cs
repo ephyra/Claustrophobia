@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour {
 
+	public static SpawnEnemy Obj;
+
     public GameObject enemy;
     private float minX;
     private float minY;
@@ -22,7 +24,7 @@ public class SpawnEnemy : MonoBehaviour {
     public float maxCooldown;
     public float minCooldown;
     public float padding;
-    public int startWait;
+    public float startWait;
     public bool stopSpawn;
     public GameObject leftWall;
     public GameObject rightWall;
@@ -30,12 +32,16 @@ public class SpawnEnemy : MonoBehaviour {
     public GameObject topWall;
     private enum Quadrant { bottomRight = 0, topRight = 90, topLeft = 180, bottomLeft = 270};
 
+	public bool isPaused;
+
 	// Use this for initialization
 	void Start () {
+		Obj = this;
+		isPaused = false;
         speedScalingFactor = 0.9f;
         enemySpawnSpeed = currentEnemyMaxSpeed * speedScalingFactor;
         enemiesSpawned = 0;
-        StartCoroutine(Spawner());
+		StartCoroutine(Spawner());
 
     }
 	
@@ -51,7 +57,13 @@ public class SpawnEnemy : MonoBehaviour {
 
     IEnumerator Spawner()
     {
-        yield return new WaitForSeconds(startWait);
+		float elapsedTime = 0;
+		while (elapsedTime < startWait) {
+			if (!isPaused) {
+				elapsedTime += Time.deltaTime;
+			}
+			yield return null;
+		}
 
         while (!stopSpawn)
         {
@@ -79,12 +91,20 @@ public class SpawnEnemy : MonoBehaviour {
             }
 
             GameObject newSpawn = (GameObject)Instantiate(enemy, spawnPosition, Quaternion.Euler(0, 0, Random.Range((float)currQuadrant, (float)(currQuadrant + 90))));
-            enemiesSpawned++;
+			GameController.Obj.AddRb (newSpawn.GetComponent<Rigidbody2D> ());
+
+			enemiesSpawned++;
             newSpawn.GetComponent<EnemyGrowAndMove>().speed = enemySpawnSpeed;
             UpdateSpawnSpeed();
             
+			elapsedTime = 0;
+			while (elapsedTime < spawnCooldown) {
+				if (!isPaused) {
+					elapsedTime += Time.deltaTime; // if not paused, start counting down
+				}
+				yield return null;
+			}
 
-            yield return new WaitForSeconds(spawnCooldown);
         }
     }
 

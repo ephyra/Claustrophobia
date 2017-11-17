@@ -36,10 +36,15 @@ public class PauseMenuController : MonoBehaviour
 
 	public AudioSource menuSFX;
 
+	private Color initBgColor;
+
+	void Awake () {
+		initBgColor = background.color;
+	}
+
 
 	void Start ()
 	{
-
 		background.color = new Color (0, 0, 0, 0);
 		HidePauseMenu ();
 
@@ -49,7 +54,7 @@ public class PauseMenuController : MonoBehaviour
 	public void ShowGameOverMenu (string cause)
 	{
 		currentState = State.GAME_OVER;
-		background.color = new Color (0, 0, 0, 1f);
+		background.color = initBgColor;
 		howToPause.SetActive (false);
 		pausePanel.SetActive (false);
 		instructionsPanel.SetActive (false);
@@ -62,7 +67,7 @@ public class PauseMenuController : MonoBehaviour
 	{
 		howToPause.SetActive (false);
 		currentState = State.MENU;
-		background.color = new Color (0, 0, 0, 0.9f);
+		background.color = initBgColor;
 		instructionAnims.SetActive (false);
 		instructionsPanel.SetActive (false);
 		pausePanel.SetActive (true);
