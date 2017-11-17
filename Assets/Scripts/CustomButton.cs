@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CustomButton : MonoBehaviour {
@@ -19,6 +20,8 @@ public class CustomButton : MonoBehaviour {
 
 	void Update () {
 
+
+
 		if (isSelected) {
 
 			GetComponent<Image> ().sprite = selectedSprite;
@@ -29,5 +32,9 @@ public class CustomButton : MonoBehaviour {
 
 		}
 
+	}
+
+	public void SetSelected (bool _isSelected) {
+		isSelected = _isSelected;
 	}
 }

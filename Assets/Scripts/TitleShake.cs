@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TitleShake : MonoBehaviour {
 
+	public bool doFlicker = false;
+
 	[Range(0,100)]
 	public float amplitude = 1;
 	[Range(0.00001f, 0.99999f)]
@@ -37,16 +39,27 @@ public class TitleShake : MonoBehaviour {
 	void Start () {
 		img = GetComponent <Image> ();
 		initPos = transform.position;
-		StartCoroutine (Flicker ());
+		if (doFlicker) {
+			StartCoroutine (Flicker ());
+		}
 	}
 
 	void OnEnable () {
-		StartCoroutine (Flicker ());
+		if (doFlicker) {
+			StartCoroutine (Flicker ());
+		}
+	}
+
+	void OnDisable () {
+		StopAllCoroutines ();
 	}
 
 	void Update ()
 	{
 		transform.position = Shake2D(amplitude, frequency, octaves, persistance, lacunarity, burstFrequency, burstContrast, Time.time) + initPos;
+		if (gameObject.name == "Main Camera") {
+			transform.position += new Vector3 (0, 0, -10f);
+		}
 	}
 
 	IEnumerator Flicker () {
@@ -56,7 +69,6 @@ public class TitleShake : MonoBehaviour {
 			timeToFlicker = Random.Range (flickerMin, flickerMax);
 			while (elapsedTime < timeToFlicker) {
 				elapsedTime += Time.deltaTime;
-				print (1);
 				yield return null;
 			}
 			for (int i = 0; i < Random.Range (2, 3); i++) {

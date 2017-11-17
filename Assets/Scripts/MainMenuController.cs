@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+	public static MainMenuController Obj;
 
 	private enum State
 	{
@@ -15,6 +16,7 @@ public class MainMenuController : MonoBehaviour
 	}
 
 	public GameObject instructionAnimations;
+	public GameObject mainMenuAnimations;
 
 	public CustomButton[] buttons;
 	public int currentlySelectedButton = 0;
@@ -30,8 +32,11 @@ public class MainMenuController : MonoBehaviour
 	public Image fadeImage;
 	public float fadeLength = 0.5f;
 
-	void Awake ()
+	void Start ()
 	{
+
+		Obj = this;
+
 		// Fade from black
 		if (!Persistent.Obj.comingFromGame) {
 			fadeImage.gameObject.SetActive (true);
@@ -49,33 +54,45 @@ public class MainMenuController : MonoBehaviour
 
 	public void ShowInstructionsPanel ()
 	{
+		currentState = State.INSTRUCTIONS;
 		instructionAnimations.SetActive (true);
 		instructionsPanel.SetActive (true);
+		HideButtonPanel ();
 	}
 
 	public void HideInstructionsPanel ()
 	{
+		
+		currentState = State.MAIN_MENU;
 		instructionAnimations.SetActive (false);
 		instructionsPanel.SetActive (false);
 	}
 
 	public void ShowButtonPanel ()
 	{
+		currentState = State.MAIN_MENU;
 		buttonPanel.SetActive (true);
+		mainMenuAnimations.SetActive (true);
+		HideCreditsPanel ();
+		HideInstructionsPanel ();
 	}
 
 	public void HideButtonPanel ()
 	{
 		buttonPanel.SetActive (false);
+		mainMenuAnimations.SetActive (false);
 	}
 
 	public void ShowCreditsPanel ()
 	{
+		currentState = State.CREDITS;
 		creditsPanel.SetActive (true);
+		HideButtonPanel ();
 	}
 
 	public void HideCreditsPanel ()
 	{
+		currentState = State.MAIN_MENU;
 		creditsPanel.SetActive (false);
 	}
 
@@ -127,14 +144,12 @@ public class MainMenuController : MonoBehaviour
 					break;
 
 				case 1:
-					HideButtonPanel ();
 					ShowInstructionsPanel ();
 					//Persistent.Obj.hasReadInstructions = true;
 					currentState = State.INSTRUCTIONS;
 					break;
 
 				case 2:
-					HideButtonPanel ();
 					ShowCreditsPanel ();
 					currentState = State.CREDITS;
 					break;
@@ -156,7 +171,6 @@ public class MainMenuController : MonoBehaviour
 		case State.INSTRUCTIONS:
 
 			if (Input.GetKeyDown (KeyCode.Escape)) {
-				HideInstructionsPanel ();
 				ShowButtonPanel ();
 				currentState = State.MAIN_MENU;
 			}
@@ -166,7 +180,6 @@ public class MainMenuController : MonoBehaviour
 		case State.CREDITS:
 
 			if (Input.GetKeyDown (KeyCode.Escape)) {
-				HideCreditsPanel ();
 				ShowButtonPanel ();
 				currentState = State.MAIN_MENU;
 			}
@@ -194,6 +207,12 @@ public class MainMenuController : MonoBehaviour
 
 		}
 
+		fadeImage.transform.parent.gameObject.SetActive (false);
+
+	}
+
+	public void SetSelectedButton (int buttonNo) {
+		currentlySelectedButton = buttonNo;
 	}
 
 }

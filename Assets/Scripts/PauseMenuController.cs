@@ -77,6 +77,7 @@ public class PauseMenuController : MonoBehaviour
 
 	public void HidePauseMenu ()
 	{
+		Camera.main.gameObject.GetComponent<TitleShake> ().enabled = true;
 		currentState = State.MENU;
 		background.color = new Color (0, 0, 0, 0);
 		instructionAnims.SetActive (false);
@@ -85,26 +86,30 @@ public class PauseMenuController : MonoBehaviour
 		gameOverPanel.SetActive (false);
 	}
 
-	void ShowInstructionsPanel ()
+	public void ShowInstructionsPanel ()
 	{
+		Camera.main.gameObject.GetComponent<TitleShake> ().enabled = false;
 		currentState = State.INSTRUCTIONS;
 		instructionAnims.SetActive (true);
 		pausePanel.SetActive (false);
 		instructionsPanel.SetActive (true);
 	}
 
-	void QuitToMenu ()
+	public void QuitToMenu ()
 	{
-		Persistent.Obj.comingFromGame = true;
+		//Persistent.Obj.comingFromGame = true;
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
 
 	}
 
-	void Quit ()
+	public void Quit ()
 	{
-
 		Application.Quit ();
 
+	}
+
+	public void SetSelectedButton (int buttonNo) {
+		currentlySelectedButton = buttonNo;
 	}
 
 

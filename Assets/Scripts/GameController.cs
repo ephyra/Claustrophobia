@@ -5,23 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
 	public static GameController Obj;
-
-	public class VelocityHolder {
-
-		private Vector2 velocity;
-		private Vector2 angularVelocity;
-
-		public VelocityHolder () {
-			velocity = Vector2.zero;
-			angularVelocity = Vector2.zero;
-		}
-
-		public void SetVelocities (Vector2 _velocity, Vector2 _angularVelocity) {
-			velocity = _velocity;
-			angularVelocity = _angularVelocity;
-		}
-
-	}
+	
 
 	private List<Rigidbody2D> savedRbs = new List <Rigidbody2D> ();
 	public Rigidbody2D playerRb;
@@ -44,7 +28,6 @@ public class GameController : MonoBehaviour {
 			if (rb.gameObject.CompareTag("Player")) {
 				playerVelocity = rb.velocity;
 				playerAngularVelocity = rb.angularVelocity;
-				print ("saved player velocity as " + playerVelocity);
 			}
 			rb.isKinematic = true;
 			rb.Sleep ();
@@ -62,7 +45,6 @@ public class GameController : MonoBehaviour {
 		}
 		playerRb.velocity = playerVelocity;
 		playerRb.angularVelocity = playerAngularVelocity;
-		print ("load player velocity as " + playerRb.velocity);
 	}
 
 	public void AddRb (Rigidbody2D rb) {
@@ -72,4 +54,10 @@ public class GameController : MonoBehaviour {
 	public void RemoveRb (Rigidbody2D rb) {
 		savedRbs.Remove (rb);
 	}
+
+
+	public void PlayerDeathNoise () {
+		GetComponent<AudioSource> ().Play ();
+	}
+
 }
