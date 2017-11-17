@@ -17,7 +17,9 @@ public class SpawnEnemy : MonoBehaviour {
     private int enemiesSpawned;
     public int enemiesKilled;
     public float speedScalingThreshold;
+	public float intermediateSpeedScalingThreshold;
     public float minSpawnCooldownThreshold;
+	public float spawnCooldownSoftCap;
     public float spawnCooldownReductionAmount;
     public float enemySpeedIncrement;
     public float currentEnemyMaxSpeed;
@@ -111,21 +113,24 @@ public class SpawnEnemy : MonoBehaviour {
     //Spawn Cooldown is reduced per enemy killed, will be called by playercontroller as and when he kills enemies
     public void ReduceSpawnCooldown()
     {
-        if (minCooldown >= minSpawnCooldownThreshold)
-        {
-            maxCooldown -= spawnCooldownReductionAmount;
-            minCooldown -= spawnCooldownReductionAmount;
-        }
+		if (enemiesKilled < spawnCooldownSoftCap) {
+			maxCooldown -= spawnCooldownReductionAmount;
+			minCooldown -= spawnCooldownReductionAmount;
+		} else {
+			maxCooldown = (1.0f + Mathf.Exp (-0.014f * enemiesKilled));
+			minCooldown = (1.5f + Mathf.Exp (-0.014f * enemiesKilled));
+		}
     }
 
     //Adaptive difficulty on enemy speed, calculation is enemiesKilled/enemiesSpawned * currentMaxSpeed, the % of enemies killed is bounded by speedScalingThreshold
     void UpdateSpawnSpeed()
     {
         currentEnemyMaxSpeed += enemySpeedIncrement;
-        if(enemiesSpawned >= 10)
-        {
-            speedScalingFactor = (float)enemiesKilled / (float)enemiesSpawned;
-        }
+		if (enemiesSpawned >= 10) {
+			speedScalingFactor = (float)enemiesKilled / (float)enemiesSpawned;
+		} else if (enemiesSpawned >= 5) {
+			speedScalingFactor = Mathf.Max (((float)enemiesKilled / (float)enemiesSpawned), intermediateSpeedScalingThreshold);
+		}
 
         if(speedScalingFactor <= speedScalingThreshold)
         {

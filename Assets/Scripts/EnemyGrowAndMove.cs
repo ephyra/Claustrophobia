@@ -11,7 +11,7 @@ public class EnemyGrowAndMove : MonoBehaviour {
     public bool stillGrowing = true;
     public float wallMovement;
 	public bool canMove;
-	public LightingScript light;
+	public LightingScript myLight;
 	public AudioSource walls;
 
 	// Use this for initialization
@@ -73,42 +73,42 @@ public class EnemyGrowAndMove : MonoBehaviour {
 				break;
 			case "LeftWall":
 				//remove from game controller rb list
-				GameController.Obj.RemoveRb (collision.gameObject.GetComponent<Rigidbody2D> ());
+				GameController.Obj.RemoveRb (this.GetComponent<Rigidbody2D> ());
 				Destroy (gameObject);
 				collision.gameObject.transform.localPosition += new Vector3 (wallMovement, 0, 0);
-				light = Object.FindObjectOfType<LightingScript> ();
+				myLight = Object.FindObjectOfType<LightingScript> ();
 				walls = collision.gameObject.GetComponent<AudioSource> ();
-				light.shiftLight (wallMovement / 2, "Left");
+				myLight.shiftLight (wallMovement / 2, "Left");
 				walls.PlayOneShot (walls.clip, 1.0f);
                 break;
             case "RightWall":
-			//remove from game controller rb list
-			GameController.Obj.RemoveRb (collision.gameObject.GetComponent<Rigidbody2D> ());
+				//remove from game controller rb list
+				GameController.Obj.RemoveRb (this.GetComponent<Rigidbody2D> ());
                 Destroy(gameObject);
                 collision.gameObject.transform.localPosition -= new Vector3(wallMovement, 0, 0);
-				light = Object.FindObjectOfType<LightingScript> ();
+				myLight = Object.FindObjectOfType<LightingScript> ();
 				walls = collision.gameObject.GetComponent<AudioSource> ();
-				light.shiftLight (wallMovement / 2, "Right");
+				myLight.shiftLight (wallMovement / 2, "Right");
 				walls.PlayOneShot (walls.clip, 1.0f);
                 break;
             case "BottomWall":
-			//remove from game controller rb list
-			GameController.Obj.RemoveRb(collision.gameObject.GetComponent<Rigidbody2D> ());
+				//remove from game controller rb list
+				GameController.Obj.RemoveRb(this.GetComponent<Rigidbody2D> ());
                 Destroy(gameObject);
                 collision.gameObject.transform.localPosition += new Vector3(0, wallMovement, 0);
-				light = Object.FindObjectOfType<LightingScript> ();
+				myLight = Object.FindObjectOfType<LightingScript> ();
 				walls = collision.gameObject.GetComponent<AudioSource> ();
-				light.shiftLight (wallMovement / 2, "Bottom");
+				myLight.shiftLight (wallMovement / 2, "Bottom");
 				walls.PlayOneShot (walls.clip, 1.0f);
 				break;
             case "TopWall":
-			//remove from game controller rb list
-			GameController.Obj.RemoveRb (collision.gameObject.GetComponent<Rigidbody2D> ());
+				//remove from game controller rb list
+				GameController.Obj.RemoveRb (this.GetComponent<Rigidbody2D> ());
                 Destroy(gameObject);
                 collision.gameObject.transform.localPosition -= new Vector3(0, wallMovement, 0);
-				light = Object.FindObjectOfType<LightingScript> ();
+				myLight = Object.FindObjectOfType<LightingScript> ();
 				walls = collision.gameObject.GetComponent<AudioSource> ();
-				light.shiftLight (wallMovement / 2, "Top");
+				myLight.shiftLight (wallMovement / 2, "Top");
 				walls.PlayOneShot (walls.clip, 1.0f);
                 break;
             default:
