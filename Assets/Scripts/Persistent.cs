@@ -23,10 +23,8 @@ public class Persistent : MonoBehaviour {
 
 		}
 
-
 		DontDestroyOnLoad (this.gameObject);
 			
-
 	}
 
 
