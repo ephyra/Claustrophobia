@@ -45,17 +45,9 @@ public class PlayerController : MonoBehaviour {
 		//Pause function
 		if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
 			if (!isPaused) {
-				isPaused = true;
-				SpawnEnemy.Obj.isPaused = true;
-				pauser.gameIsPaused = true;
-				GameController.Obj.SaveRigidbodies ();
-				pauser.ShowPauseMenu ();
+				PauseGame ();
 			} else {
-				isPaused = false;
-				SpawnEnemy.Obj.isPaused = false;
-				pauser.gameIsPaused = false;
-				GameController.Obj.LoadRigidbodies ();
-				pauser.HidePauseMenu ();
+				UnpauseGame ();
 			}
 		}
 		
@@ -65,8 +57,12 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+			GameController.Obj.PlayerDeathNoise ();
 			pauser.ShowGameOverMenu ("You died from touching a wall.");
-			Time.timeScale = 0.0001f;
+			isPaused = true;
+			SpawnEnemy.Obj.isPaused = true;
+			GameController.Obj.SaveRigidbodies ();
+			pauser.gameIsPaused = true;
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -80,4 +76,23 @@ public class PlayerController : MonoBehaviour {
             spawner.enemiesKilled++;
         }
     }
+
+	private void PauseGame () {
+		isPaused = true;
+		SpawnEnemy.Obj.isPaused = true;
+		pauser.gameIsPaused = true;
+		GameController.Obj.SaveRigidbodies ();
+		pauser.ShowPauseMenu ();
+	}
+
+	private void UnpauseGame () {
+		isPaused = false;
+		SpawnEnemy.Obj.isPaused = false;
+		pauser.gameIsPaused = false;
+		GameController.Obj.LoadRigidbodies ();
+		pauser.HidePauseMenu ();
+	}
+
 }
+
+

@@ -50,9 +50,16 @@ public class TitleShake : MonoBehaviour {
 		}
 	}
 
+	void OnDisable () {
+		StopAllCoroutines ();
+	}
+
 	void Update ()
 	{
 		transform.position = Shake2D(amplitude, frequency, octaves, persistance, lacunarity, burstFrequency, burstContrast, Time.time) + initPos;
+		if (gameObject.name == "Main Camera") {
+			transform.position += new Vector3 (0, 0, -10f);
+		}
 	}
 
 	IEnumerator Flicker () {

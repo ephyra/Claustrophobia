@@ -32,7 +32,7 @@ public class MainMenuController : MonoBehaviour
 	public Image fadeImage;
 	public float fadeLength = 0.5f;
 
-	void Awake ()
+	void Start ()
 	{
 
 		Obj = this;
@@ -62,6 +62,7 @@ public class MainMenuController : MonoBehaviour
 
 	public void HideInstructionsPanel ()
 	{
+		
 		currentState = State.MAIN_MENU;
 		instructionAnimations.SetActive (false);
 		instructionsPanel.SetActive (false);

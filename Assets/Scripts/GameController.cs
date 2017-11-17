@@ -5,23 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
 	public static GameController Obj;
-
-	public class VelocityHolder {
-
-		private Vector2 velocity;
-		private Vector2 angularVelocity;
-
-		public VelocityHolder () {
-			velocity = Vector2.zero;
-			angularVelocity = Vector2.zero;
-		}
-
-		public void SetVelocities (Vector2 _velocity, Vector2 _angularVelocity) {
-			velocity = _velocity;
-			angularVelocity = _angularVelocity;
-		}
-
-	}
+	
 
 	private List<Rigidbody2D> savedRbs = new List <Rigidbody2D> ();
 	public Rigidbody2D playerRb;
@@ -70,4 +54,10 @@ public class GameController : MonoBehaviour {
 	public void RemoveRb (Rigidbody2D rb) {
 		savedRbs.Remove (rb);
 	}
+
+
+	public void PlayerDeathNoise () {
+		GetComponent<AudioSource> ().Play ();
+	}
+
 }
