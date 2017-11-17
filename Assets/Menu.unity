@@ -326,19 +326,24 @@ RectTransform:
 --- !u!114 &47792940
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114123823840832132, guid: db1444239ce46d94e8518b65afe495a1,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 47792938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ea953f9d0ec044f834893068dc8219, type: 3}
+  m_Script: {fileID: 11500000, guid: cebfabdb940fa384bb061f4d518f2f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTime: 1
-  offTime: 0.3
-  invisible: {r: 0, g: 0, b: 0, a: 0}
-  initColor: {r: 1, g: 1, b: 1, a: 1}
+  doFlicker: 0
+  amplitude: 0.1
+  frequency: 0.01
+  octaves: 2
+  persistance: 0.00001
+  lacunarity: 99.4
+  burstFrequency: 0.017
+  burstContrast: 3
+  flickerMin: 2
+  flickerMax: 8
 --- !u!114 &47792941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1555,12 +1560,12 @@ Prefab:
     - target: {fileID: 224830716097202284, guid: db1444239ce46d94e8518b65afe495a1,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224723070043969182, guid: db1444239ce46d94e8518b65afe495a1,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224208888005105820, guid: db1444239ce46d94e8518b65afe495a1,
         type: 2}

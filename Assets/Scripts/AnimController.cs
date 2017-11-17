@@ -143,7 +143,7 @@ public class AnimController : MonoBehaviour
 			}
 
 			enemyRb.AddForce (Vector2.right * 60f);
-			yield return new WaitForSecondsRealtime (2.1f);
+			yield return new WaitForSecondsRealtime (1.98f);
 			HideEnemy (enemyInitPos);
 
 		
@@ -160,7 +160,7 @@ public class AnimController : MonoBehaviour
 			}
 
 			enemyRb.AddForce (Vector2.right * 60f);
-			yield return new WaitForSecondsRealtime (1.9f);
+			yield return new WaitForSecondsRealtime (1.7f);
 			HideEnemy (enemyInitPos);
 
 			thirdFrameWalls.transform.GetChild (1).gameObject.GetComponent<SpriteRenderer> ().enabled = true;
