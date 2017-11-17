@@ -472,7 +472,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 40db1fdedfe6fdc4fb6b9f88049cc1b0, type: 3}
+    m_Font: {fileID: 12800000, guid: 85d0a0e9806ca5541a968104960651bb, type: 3}
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
@@ -3403,7 +3403,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 40db1fdedfe6fdc4fb6b9f88049cc1b0, type: 3}
+    m_Font: {fileID: 12800000, guid: 85d0a0e9806ca5541a968104960651bb, type: 3}
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
@@ -3416,8 +3416,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "<color=red>Music</color>\n\n\"Unseen Horrors\" Kevin MacLeod (incompetech.com)\r\nLicensed
-    under Creative Commons:\nBy Attribution 3.0 License\r\nhttp://creativecommons.org/licenses/by/3.0/\n\n\n<color=red>Sound
-    Effects</color>\n\nhttp://maoudamashii.jokersounds.com"
+    under Creative Commons:\nBy Attribution 3.0 License\r\nhttp://creativecommons.org/licenses/by/3.0/\n\nRoss
+    Bugden Music\n\n\n<color=red>Sound Effects</color>\n\nhttp://maoudamashii.jokersounds.com\nFreesound.org"
 --- !u!222 &2128912176
 CanvasRenderer:
   m_ObjectHideFlags: 0
