@@ -44,7 +44,6 @@ public class GameController : MonoBehaviour {
 			if (rb.gameObject.CompareTag("Player")) {
 				playerVelocity = rb.velocity;
 				playerAngularVelocity = rb.angularVelocity;
-				print ("saved player velocity as " + playerVelocity);
 			}
 			rb.isKinematic = true;
 			rb.Sleep ();
@@ -62,7 +61,6 @@ public class GameController : MonoBehaviour {
 		}
 		playerRb.velocity = playerVelocity;
 		playerRb.angularVelocity = playerAngularVelocity;
-		print ("load player velocity as " + playerRb.velocity);
 	}
 
 	public void AddRb (Rigidbody2D rb) {

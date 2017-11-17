@@ -15,6 +15,7 @@ public class MainMenuController : MonoBehaviour
 	}
 
 	public GameObject instructionAnimations;
+	public GameObject mainMenuAnimations;
 
 	public CustomButton[] buttons;
 	public int currentlySelectedButton = 0;
@@ -62,11 +63,13 @@ public class MainMenuController : MonoBehaviour
 	public void ShowButtonPanel ()
 	{
 		buttonPanel.SetActive (true);
+		mainMenuAnimations.SetActive (true);
 	}
 
 	public void HideButtonPanel ()
 	{
 		buttonPanel.SetActive (false);
+		mainMenuAnimations.SetActive (false);
 	}
 
 	public void ShowCreditsPanel ()
